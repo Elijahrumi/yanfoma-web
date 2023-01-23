@@ -2,86 +2,68 @@ import React,{useEffect, useState} from "react";
 // import blogData from "../data/blogData";
 import axios from "axios";
 
+const client = axios.create({
+  baseURL:
+    "https://yanfoma.com/ghost/api/content/posts/",
+});
+
 export default function Blog() {
-  const [blogData, setBlogData] = useState([]);
-  const blogDataEndpoint = "https://yanfoma.com/ghost/api/content/posts/?key=9cf98ee267557de238f56ec2fb";
-  const fetchBlogData = () => {
-    axios.get(blogDataEndpoint)
-         .then((response)=>{
-          // console.log(response.data);
-          setBlogData(response.data);
-         }) 
-  }
-
+  const [postData, setPostData] = useState([]);
+  
   useEffect(()=>{
-    fetchBlogData()
-  },[]);
+    const fetchPost = async () => {
+      let response = await client.get("?key=9cf98ee267557de238f56ec2fb");
+      setPostData(response.data.posts);
+      
+      
+      
+    };
+      fetchPost();
+      // post = postData.posts;
+    },[]);
 
-  
+    console.dir(postData);
+    // console.log("posts:", postData.posts);
+   
 
-  // const posts = Object.values(blogData).map(item => console.log(item))
-  
-
-  
-    
-        return (
-
+      const DisplayPost = postData.map(
+        (post) => {
+          return(
             <div className="col-md-4">
-            <div className="card blog-post my-4 my-sm-5 my-md-0">
-              <img
-                // src={data["feature-image"]}
-                alt="blog-image"
-              />
-              <div className="card-body">
+                    <div className="card blog-post my-4 my-sm-5 my-md-0">
+                        <img src={post.feature_image} alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page"/>
+                        <div className="card-body">
+                            <div className="details mb-3">
+                                <a href="javascript:void(0)"><i className="ti-comments"></i> 123</a>
+                                <a href="javascript:void(0)"><i className="ti-eye"></i> 123</a>
+                            </div>
+                            <h5 className="card-title">{post.title}</h5>
+                            <p>{post.excerpt}</p>
+                            <a href="javascript:void(0)" className="d-block mt-3">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+          )
+        }
+      ) 
+      return (
+    <section id="blog">
+      <div className="container">
+        <h6 className="section-subtitle text-center">News Feeds</h6>
+        <h6 className="section-title mb-6 text-center">Our Blog</h6>
 
-               
-               
-                {
-                // Object.keys(blogData).map(
-                //   item => {
-        
-                //     const posts = blogData[item];
+        <div className="row">
+          
+            {DisplayPost}
+          
+         
+        </div>
+      </div>
+    </section>
+  );
 
-
-                //     Object.values(posts).map(elem => {
-                //       return(
-                //         <h1 key={elem.id}>
-                //           {elem.title}
-                //         </h1>
-                //       )
-                //     })
-
-
-
-                //   }
-                // )
-                }
-                {/* <h5 className="card-title">{data.title}</h5> */}
-                {/* <p>{data.excerpt}</p> */}
-                <a href="javascript:void(0)" className="d-block mt-3">
-                  Read More...
-                </a>
-              </div>
-            </div>
-            </div>
-        )
     }
 
 
 
-  // return (
-  //   <section id="blog">
-  //     <div className="container">
-  //       <h6 className="section-subtitle text-center">News Feeds</h6>
-  //       <h6 className="section-title mb-6 text-center">Our Blog</h6>
-
-  //       <div className="row">
-          
-  //           {BlogData}
-          
-         
-  //       </div>
-  //     </div>
-  //   </section>
-  // );
-
+  // 
