@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-// import blogData from "../data/blogData";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 const client = axios.create({
@@ -28,22 +28,31 @@ export default function Blog() {
 
       const DisplayPost = postData.map(
         (post) => {
-          return(
-            <div className="col-md-4">
-                    <div className="card blog-post my-4 my-sm-5 my-md-0">
-                        <img src={post.feature_image} alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page"/>
-                        <div className="card-body">
-                            {/* <div className="details mb-3">
+          return (
+            <div className="col-md-4" key={post.id}>
+              <div className="card blog-post my-4 my-sm-5 my-md-0">
+                <img
+                  src={post.feature_image}
+                  alt={post.feature_image}
+                />
+                <div className="card-body">
+                  {/* <div className="details mb-3">
                                 <a href="javascript:void(0)"><i className="ti-comments"></i> 123</a>
                                 <a href="javascript:void(0)"><i className="ti-eye"></i> 123</a>
                             </div> */}
-                            <h5 className="card-title">{post.title}</h5>
-                            <p>{post.excerpt}</p>
-                            <a href="javascript:void(0)" className="d-block mt-3">Read More...</a>
-                        </div>
-                    </div>
+                  <h5 className="card-title">{post.title}</h5>
+                  <p>{post.excerpt}</p>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    // className="d-block mt-3"
+                  >
+                    Read More...
+                  </Link>
+
                 </div>
-          )
+              </div>
+            </div>
+          );
         }
       ) 
       return (

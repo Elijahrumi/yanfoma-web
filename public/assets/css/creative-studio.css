@@ -11456,6 +11456,13 @@ p {
   text-decoration: none;
 }
 
+.inner-blog-image{
+  width: 50% !important; /* or any custom size */
+    height: 40% !important;
+    margin-top: 8vh !important; 
+    object-fit: contain;
+}
+
 .card.blog-post .card-body .details a:first-child {
   margin-right: 30px;
   margin-left: -3px;

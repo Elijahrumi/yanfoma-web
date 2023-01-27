@@ -1,4 +1,4 @@
-export default [
+const portfolio = [
     {
         image:"folio-1.jpg"
     },
@@ -20,3 +20,5 @@ export default [
 
 
 ]
+
+export default portfolio;

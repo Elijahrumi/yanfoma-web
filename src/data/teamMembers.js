@@ -1,4 +1,4 @@
-export default [
+const teamMembers = [
     {
         "image-src":"assets/imgs/avatar.jpg",
         "title":"FOUNDER",
@@ -60,3 +60,5 @@ export default [
         "twitter-url":"https://twitter.com"
     }  
 ]
+
+export default teamMembers;

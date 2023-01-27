@@ -1,4 +1,4 @@
-export default [
+const services = [
   {
     title: "corporis assumenda",
     icon: "ti-filter",
@@ -48,3 +48,5 @@ export default [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis amet saepe et!",
   },
 ];
+
+export default services;

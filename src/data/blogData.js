@@ -1,4 +1,4 @@
-export default [
+const blogData =  [
   {
     "img-src": "assets/imgs/blog-1.jpg",
     "comment-count": 123,
@@ -21,3 +21,5 @@ export default [
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.Repudiandae laudantium dolor nisi obcaecati, non laboriosamasperiores doloremque tempora repellendus iure!"
   },
 ];
+
+export default blogData;
