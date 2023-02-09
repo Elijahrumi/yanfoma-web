@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import axios from "axios";
 
 const client = axios.create({
@@ -9,14 +9,12 @@ const client = axios.create({
 
 export default function Blog() {
   const [postData, setPostData] = useState([]);
+  const location = useLocation();
   
   useEffect(()=>{
     const fetchPost = async () => {
       let response = await client.get("?key=9cf98ee267557de238f56ec2fb");
       setPostData(response.data.posts);
-      
-      
-      
     };
       fetchPost();
       // post = postData.posts;
@@ -44,10 +42,13 @@ export default function Blog() {
                   <p>{post.excerpt}</p>
                   <Link
                     to={`/blog/${post.slug}`}
+
+                    state = {{ background: location}}
                     // className="d-block mt-3"
                   >
                     Read More...
                   </Link>
+                  <Outlet/>
 
                 </div>
               </div>
@@ -62,10 +63,7 @@ export default function Blog() {
         <h6 className="section-title mb-6 text-center">Our Blog</h6>
 
         <div className="row">
-          
             {DisplayPost}
-          
-         
         </div>
       </div>
     </section>

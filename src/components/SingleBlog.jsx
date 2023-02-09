@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReactHtmlParser from "react-html-parser";
+import { HashLink } from "react-router-hash-link";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const client = axios.create({
   baseURL: "https://yanfoma.com/ghost/api/content/posts/slug/",
@@ -31,7 +33,13 @@ const SingleBlog = () => {
           {
             singleBlogData.map((data)=>{
                 return (
-                  <div className="row m-5" key={data.id}>
+                  
+                  <div className="row m-1" key={data.id}>
+                    <div className="row top-bar">
+                      <div className=" top-bar-overlay"></div>
+                      <Navbar/>
+                    </div>
+
                     <div className="col-sm m-5">
                       <div className="card blog-post my-4 my-sm-5 my-md-0">
                         <img
@@ -47,7 +55,8 @@ const SingleBlog = () => {
                           <h5 className="card-title">{data.title}</h5>
                           <div>{ReactHtmlParser(data.html)}</div>
                           <div className="btn btn-sm btn-primary">
-                            <Link to="/#blog">Home</Link>
+                            {/* <Link to="/">Go back</Link> */}
+                            <HashLink smooth to="/#blog">Go back </HashLink>
                           </div>
                         </div>
                       </div>

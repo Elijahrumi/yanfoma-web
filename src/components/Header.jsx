@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "./Navbar";
+
 
 export default function Header(){
     return (
         //  Page Header
     <header className="header">
+        <Navbar/>
         <div className="overlay">
             <h6 className="subtitle">We host content focused websites for organizations</h6>
             <h1 className="title">Yanfoma</h1>
