@@ -3,7 +3,7 @@ import axios from "axios";
 import {  useNavigate } from "react-router-dom";
 
 
-const baseUrl = 'http://localhost:5000/users';
+const baseUrl = 'http://localhost:5000';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -17,7 +17,7 @@ const Register = () => {
         e.preventDefault();
         try{
             await axios.post(`${baseUrl}/users`, {
-                name:name,
+                name: name,
                 email:email,
                 password: password,
                 confPassword: confPassword

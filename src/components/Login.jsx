@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+// import "bulma/css/bulma.css";
 import { useNavigate } from 'react-router-dom';
  
 const Login = () => {
@@ -22,13 +23,15 @@ const Login = () => {
             }
         }
 
-        return (
-          <section className="hero has-background-grey-light is-fullheight is-fullwidth">
-            <div className="hero-body">
-              <div className="container">
-                <div className="columns is-centered">
-                  <div className="column is-4-desktop">
-                    <form onSubmit={Auth} className="box">
+        
+    }
+    return (
+      <section className="col-sm m-5">
+        <div className="card my-4">
+          <div className="container">
+            <div className="card">
+              <div className="col-sm ">
+                <form onSubmit={Auth} className="box">
                       <p className="has-text-centered">{msg}</p>
                       <div className="field mt-5">
                         <label className="label">Email or Username</label>
@@ -60,13 +63,12 @@ const Login = () => {
                         </button>
                       </div>
                     </form>
-                  </div>
-                </div>
               </div>
             </div>
-          </section>
-        );
-    }
+          </div>
+        </div>
+      </section>
+    );
 }
 
 export default Login

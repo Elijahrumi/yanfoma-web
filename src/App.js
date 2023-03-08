@@ -5,6 +5,7 @@ import './App.css';
 import MainComponent from './components/MainComponent';
 import SingleBlog from './components/SingleBlog';
 import  Login  from './components/Login';
+import Register from './components/Register';
 
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<MainComponent />}></Route>
           <Route path="/blog/:slug" element={<SingleBlog />}></Route>
           <Route path='/login' element={<Login/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>
