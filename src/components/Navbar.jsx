@@ -1,8 +1,22 @@
 import React from "react";
+import axios from 'axios';
+import { Routes, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { Route } from "react-router-dom";
+// import  Login  from "./Login";
 
 export default function Navbar(){
-    return (
+  const history = useNavigate();
+  
+  const Logout = async () => {
+    try {
+      await axios.delete("http://localhost:5000/logout");
+      history("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
       <nav
         className="navbar custom-navbar navbar-expand-lg navbar-dark"
         data-spy="affix"
@@ -66,14 +80,13 @@ export default function Navbar(){
                   Contact
                 </HashLink>
               </li>
-              <li className="nav-item">
-                <HashLink
-                  className="nav-link btn btn-primary btn-sm ml-lg-3"
-                  to="components.html"
-                >
-                  Components
-                </HashLink>
-              </li>
+              {/* <li className="nav-item">
+                <Routes>
+                <Route path="/login" >
+                    <Login/>
+                </Route>
+                </Routes>
+              </li> */}
             </ul>
           </div>
         </div>
