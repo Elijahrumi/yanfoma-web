@@ -3,31 +3,34 @@ import axios from "axios";
 import {  useNavigate } from "react-router-dom";
 
 
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'http://localhost:3001';
 
 const Register = () => {
-    const [name, setName] = useState("");
+    const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confPassword, setConfPassword] = useState("");
+    // const [confPassword, setConfPassword] = useState("");
     const [msg, setMsg] = useState("");
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const Register = async (e) => {
         e.preventDefault();
-        try{
-            await axios.post(`${baseUrl}/users`, {
-                name: name,
+        
+            await axios.post(`${baseUrl}/register`, {
+                username: username,
                 email:email,
                 password: password,
-                confPassword: confPassword
+                // confPassword: confPassword
+            }).then((response)=>{
+              if(response.data.message){
+                setMsg(response.data.message)
+              }else{
+                setMsg("registration successful");
+                navigate("/login");
+              }
             });
-            history.push('/login');
-        } catch(error){
-            if(error.message){
-                setMsg(error.response.data.msg);
-            }
-        }
+            
+         
     }
 
     return (
@@ -39,14 +42,14 @@ const Register = () => {
                 <form onSubmit={Register} className="box">
                   <p className="has-text-centered">{msg}</p>
                   <div className="field mt-5">
-                    <label className="label">Name</label>
+                    <label className="label">username</label>
                     <div className="controls">
                       <input
                         type="text"
                         className="input"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -74,7 +77,7 @@ const Register = () => {
                       />
                     </div>
                   </div>
-                  <div className="field mt-5">
+                  {/* <div className="field mt-5">
                     <label className="label">Confirm Password</label>
                     <div className="controls">
                       <input
@@ -85,12 +88,13 @@ const Register = () => {
                         onChange={(e) => setConfPassword(e.target.value)}
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="field mt-5">
                     <button className="button is-success is-fullwidth">
                       Register
                     </button>
                   </div>
+                  <h3 style={{color: 'red'}}>{msg}</h3>
                 </form>
               </div>
             </div>
