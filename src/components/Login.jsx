@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
  
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
     const navigate = useNavigate();
@@ -12,13 +12,13 @@ const Login = () => {
     const Auth = async (e) => {
       e.preventDefault();
       await axios.post("http://localhost:3001/login", {
-        email: email,
+        username: username,
         password: password,
       }).then((response) => {
         if (response.data.message) {
           setMsg(response.data.message);
         } else {
-          setMsg(response.data[0].email);
+          // setMsg(response.data[0].email);
           navigate("/dashboard");
         }
       });
@@ -34,16 +34,16 @@ const Login = () => {
             <div className="card">
               <div className="col-sm ">
                 <form className="box">
-                  <p className="has-text-centered">{msg}</p>
+                  {/* <p className="has-text-centered">{msg}</p> */}
                   <div className="field mt-5">
-                    <label className="label">Email</label>
+                    <label className="label">Username</label>
                     <div className="controls">
                       <input
                         type="text"
                         className="input"
-                        placeholder="Username"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="email"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
                     </div>
                   </div>
