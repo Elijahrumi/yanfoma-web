@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 const db = new Sequelize('yanfomadb', 'root', '', {
-    host: "localhost",
+    host: "localhost:5000",
     dialect: "mysql"
 });
 
